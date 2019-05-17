@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "jsx": "preserve",
+    "lib": ["dom", "esnext"]
+  },
+  "extends": "./node_modules/skripts/base-tsconfig.json",
+  "include": ["src"]
+}
