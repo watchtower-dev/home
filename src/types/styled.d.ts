@@ -15,10 +15,7 @@ declare module "styled-components" {
         regular: string
       }
     }
-    font: {
-      primary: string
-      secondary: string
-    }
+    font: string
     fontSize: {
       large: string
       larger: string

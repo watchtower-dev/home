@@ -1,11 +1,12 @@
 import React from "react"
 
-export default ({
-  href,
-  label,
-  children,
-  ...other
-}: Partial<{ href: string; label: string; children: React.ReactNode }>) => (
+interface IProps {
+  children: React.ReactNode
+  href: string
+  label: string
+}
+
+export default ({ children, href, label, ...other }: IProps) => (
   <a
     aria-label={label}
     href={href}

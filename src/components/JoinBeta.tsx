@@ -1,18 +1,16 @@
-import { error, log } from "@therockstorm/utils"
 import addToMailchimp from "gatsby-plugin-mailchimp"
-import React, { useState } from "react"
+import React, { FormEvent, useState } from "react"
 import styled from "styled-components"
-import { Container } from "../global"
+import { Container } from "./global"
 
 export default ({ inverse }: { inverse?: boolean }) => {
   const [email, setEmail] = useState("")
   const [result, setResult] = useState({ msg: "", success: true })
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
       const r = await addToMailchimp(email)
-      log(r.msg)
       setResult(
         r.result === "error"
           ? { msg: "Invalid email, please try again.", success: false }
@@ -22,7 +20,6 @@ export default ({ inverse }: { inverse?: boolean }) => {
             }
       )
     } catch (e) {
-      error(e)
       setResult({
         msg: "Failed, please disable content blockers and try again.",
         success: false
@@ -92,7 +89,6 @@ const Form = styled.form`
     }
   }
 `
-
 const Button = styled.input`
   background: ${props => props.theme.color.secondary};
   color: ${props => props.theme.color.white.regular};

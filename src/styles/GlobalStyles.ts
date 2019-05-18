@@ -8,16 +8,12 @@ export default createGlobalStyle`
   ${normalize};
 
   body {
-    font-family: ${props => props.theme.font.secondary};
+    font-family: ${props => props.theme.font};
   }
 
   h1, h2, h3, p {
     margin: 0;
     font-weight: normal;
-  }
-
-  h1, h2 {
-    font-family: ${props => props.theme.font.primary};
   }
 
   h1 {

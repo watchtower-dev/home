@@ -1,14 +1,14 @@
 import React from "react"
-import Layout from "../components/common/Layout"
-import Navbar from "../components/common/Navbar"
-import About from "../components/sections/About"
-import Footer from "../components/sections/Footer"
-import Header from "../components/sections/Header"
-import JoinBeta from "../components/sections/JoinBeta"
+import About from "../components/About"
+import Footer from "../components/Footer"
+import Header from "../components/Header"
+import JoinBeta from "../components/JoinBeta"
+import Layout from "../components/Layout"
+import Navbar from "../components/Navbar"
 
 export default () => (
-  <Layout>
-    <Navbar showMenu />
+  <Layout title={"API Monitoring, Testing, and Uptime"}>
+    <Navbar links={["About"]} />
     <Header />
     <JoinBeta />
     <About />

@@ -1,10 +1,10 @@
 import React from "react"
 import Svg from "react-inlinesvg"
 import styled from "styled-components"
-import Confirmation from "../../img/confirmation.svg"
-import Downtime from "../../img/downtime.svg"
-import Global from "../../img/global.svg"
-import { Container, Section } from "../global"
+import Confirmation from "../img/confirmation.svg"
+import Downtime from "../img/downtime.svg"
+import Global from "../img/global.svg"
+import { Container, Section } from "./global"
 
 export default () => (
   <Section id="about">
@@ -60,9 +60,9 @@ const Grid = styled.div<{ inverse?: boolean }>`
   ${props =>
     props.inverse &&
     `
-    text-align: left;
-    grid-template-columns: 2fr 3fr;
-  `}
+  text-align: left;
+  grid-template-columns: 2fr 3fr;
+`}
 
   h2 {
     margin-bottom: 16px;
@@ -80,13 +80,12 @@ const Grid = styled.div<{ inverse?: boolean }>`
     ${props =>
       props.inverse &&
       `
-        ${Art} {
-          order: 2;
-        }
-    `}
+      ${Art} {
+        order: 2;
+      }
+  `}
   }
 `
-
 const Art = styled.figure`
   margin: 0;
   max-width: 380px;

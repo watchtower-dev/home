@@ -2,7 +2,7 @@ import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 import React from "react"
 import styled from "styled-components"
-import { Container } from "../global"
+import { Container } from "./global"
 
 export default () => {
   const data = useStaticQuery(graphql`
@@ -18,7 +18,7 @@ export default () => {
   `)
 
   return (
-    <HeaderWrapper>
+    <Wrap>
       <Container>
         <Grid>
           <H1>Trust your APIs</H1>
@@ -31,19 +31,17 @@ export default () => {
           </Art>
         </Grid>
       </Container>
-    </HeaderWrapper>
+    </Wrap>
   )
 }
 
-const HeaderWrapper = styled.header`
+const Wrap = styled.header`
   background-color: ${props => props.theme.color.primary};
   padding-top: 96px;
 `
-
 const Art = styled.div`
   justify-self: center;
 `
-
 const Grid = styled.div`
   display: grid;
   margin-top: 20px;
@@ -61,11 +59,9 @@ const Grid = styled.div`
     }
   }
 `
-
 const H1 = styled.h1`
   justify-self: center;
 `
-
 const H2 = styled.h2`
   justify-self: center;
 `

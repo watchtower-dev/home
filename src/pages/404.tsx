@@ -1,9 +1,9 @@
 import React from "react"
 import styled from "styled-components"
-import Layout from "../components/common/Layout"
-import Navbar from "../components/common/Navbar"
+import Footer from "../components/Footer"
 import { Container, Section } from "../components/global"
-import Footer from "../components/sections/Footer"
+import Layout from "../components/Layout"
+import Navbar from "../components/Navbar"
 
 export default () => (
   <Layout title="Page not found - Watchtower">

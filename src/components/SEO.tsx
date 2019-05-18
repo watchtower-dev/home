@@ -2,7 +2,13 @@ import { graphql, useStaticQuery } from "gatsby"
 import React from "react"
 import Helmet from "react-helmet"
 
-export default ({ title }: { title?: string }) => {
+type Props = Partial<{
+  title: string
+  description: string
+  slug: string
+}>
+
+export default ({ title, description, slug }: Props) => {
   const { site }: { site: ISite } = useStaticQuery(
     graphql`
       query {
@@ -21,22 +27,23 @@ export default ({ title }: { title?: string }) => {
     `
   )
   const meta = site.siteMetadata
-  const t = title || `${meta.description} - ${meta.title}`
-
+  const t = `${title} - ${meta.title}` || `${meta.description} - ${meta.title}`
+  const desc = description || meta.description
+  const url = `${site.siteMetadata.siteUrl}${slug}`
   return (
     <Helmet>
       <meta property="og:title" content={t} />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content={meta.siteUrl} />
-      <meta property="og:description" content={meta.description} />
+      <meta property="og:url" content={url} />
+      <meta property="og:description" content={desc} />
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:creator" content={meta.social.twitter} />
       <meta name="twitter:title" content={t} />
-      <meta name="twitter:description" content={meta.description} />
-      <meta name="twitter:domain" content={meta.siteUrl} />
+      <meta name="twitter:description" content={desc} />
+      <meta name="twitter:domain" content={url} />
 
-      <meta name="description" content={meta.description} />
+      <meta name="description" content={desc} />
       <meta
         name="keywords"
         content={["api", "monitoring", "testing", "uptime"].join(", ")}
