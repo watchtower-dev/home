@@ -21,7 +21,7 @@ export default ({ title }: { title?: string }) => {
     `
   )
   const meta = site.siteMetadata
-  const t = title || `${meta.title} - ${meta.description}`
+  const t = title || `${meta.description} - ${meta.title}`
 
   return (
     <Helmet>

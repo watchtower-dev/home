@@ -1,4 +1,3 @@
-import { graphql, StaticQuery } from "gatsby"
 import React from "react"
 import Svg from "react-inlinesvg"
 import styled from "styled-components"
@@ -8,91 +7,48 @@ import Global from "../../img/global.svg"
 import { Container, Section } from "../global"
 
 export default () => (
-  <StaticQuery
-    query={graphql`
-      query {
-        art_fast: file(
-          sourceInstanceName: { eq: "art" }
-          name: { eq: "fast" }
-        ) {
-          childImageSharp {
-            fluid(maxWidth: 760) {
-              ...GatsbyImageSharpFluid_withWebp_tracedSVG
-            }
-          }
-        }
-
-        art_learn: file(
-          sourceInstanceName: { eq: "art" }
-          name: { eq: "learn_yourself" }
-        ) {
-          childImageSharp {
-            fluid(maxWidth: 760) {
-              ...GatsbyImageSharpFluid_withWebp_tracedSVG
-            }
-          }
-        }
-
-        art_ideas: file(
-          sourceInstanceName: { eq: "art" }
-          name: { eq: "ideas" }
-        ) {
-          childImageSharp {
-            fluid(maxWidth: 760) {
-              ...GatsbyImageSharpFluid_withWebp_tracedSVG
-            }
-          }
-        }
-      }
-    `}
-    render={data => (
-      <Section id="about">
-        <Container>
-          <Grid>
-            <div>
-              <h2>Reduce downtime</h2>
-              <p>
-                Downtime is expensive. Catch bugs in test environments and
-                reduce debugging times if they reach production.
-              </p>
-            </div>
-            <Art>
-              <Svg src={Downtime} />
-            </Art>
-          </Grid>
-          {/*
-          // @ts-ignore */}
-          <Grid inverse>
-            <Art>
-              <Svg src={Confirmation} />
-            </Art>
-            <div>
-              <h2>Prevent regressions</h2>
-              <p>
-                Trust your APIs by verifying responses are returning expected
-                data.
-              </p>
-            </div>
-          </Grid>
-          <Grid>
-            <div>
-              <h2>Monitor globally</h2>
-              <p>
-                Test your app worldwide on any schedule to catch problems before
-                your customers, wherever they may be.
-              </p>
-            </div>
-            <Art>
-              <Svg src={Global} />
-            </Art>
-          </Grid>
-        </Container>
-      </Section>
-    )}
-  />
+  <Section id="about">
+    <Container>
+      <Grid>
+        <div>
+          <h2>Reduce downtime</h2>
+          <p>
+            Downtime is expensive. Catch bugs in test environments and reduce
+            debugging times if they reach production.
+          </p>
+        </div>
+        <Art>
+          <Svg src={Downtime} />
+        </Art>
+      </Grid>
+      <Grid inverse>
+        <Art>
+          <Svg src={Confirmation} />
+        </Art>
+        <div>
+          <h2>Prevent regressions</h2>
+          <p>
+            Trust your APIs by verifying responses are returning expected data.
+          </p>
+        </div>
+      </Grid>
+      <Grid>
+        <div>
+          <h2>Monitor globally</h2>
+          <p>
+            Test your app worldwide on any schedule to catch problems before
+            your customers, wherever they may be.
+          </p>
+        </div>
+        <Art>
+          <Svg src={Global} />
+        </Art>
+      </Grid>
+    </Container>
+  </Section>
 )
 
-const Grid = styled.div`
+const Grid = styled.div<{ inverse?: boolean }>`
   display: grid;
   grid-template-columns: 3fr 2fr;
   grid-gap: 40px;
@@ -102,7 +58,6 @@ const Grid = styled.div`
   margin: 24px 0;
 
   ${props =>
-    // @ts-ignore
     props.inverse &&
     `
     text-align: left;
@@ -123,7 +78,6 @@ const Grid = styled.div`
     }
 
     ${props =>
-      // @ts-ignore
       props.inverse &&
       `
         ${Art} {

@@ -26,11 +26,11 @@ module.exports = {
         headers: {
           "/*": [
             //https://csp-evaluator.withgoogle.com/
-            `Content-Security-Policy: default-src 'none';script-src 'self' https://www.google-analytics.com 'unsafe-inline' data:;style-src 'unsafe-inline';img-src 'self' https://www.google-analytics.com data:;font-src 'self' https://fonts.gstatic.com;connect-src 'self' https://www.google-analytics.com;manifest-src 'self';prefetch-src 'self' https://*.google.com https://www.google-analytics.com;`,
+            `Content-Security-Policy: default-src 'none';script-src 'self' https://rockywarren.us15.list-manage.com https://www.google-analytics.com 'unsafe-inline' data:;style-src 'unsafe-inline';img-src 'self' https://www.google-analytics.com data:;font-src 'self' https://fonts.gstatic.com;connect-src 'self' https://www.google-analytics.com;manifest-src 'self';prefetch-src 'self' https://*.google.com https://www.google-analytics.com;`,
             // https://github.com/WICG/feature-policy/blob/master/features.md
             `Feature-Policy: accelerometer 'none';ambient-light-sensor 'none';autoplay 'none';camera 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';gyroscope 'none';magnetometer 'none';microphone 'none';midi 'none';payment 'none';picture-in-picture 'none';speaker 'none';usb 'none';vr 'none';`,
-            `Referrer-Policy: same-origin`
-            // `Strict-Transport-Security: max-age=31536000; includeSubDomains; preload`
+            `Referrer-Policy: same-origin`,
+            `Strict-Transport-Security: max-age=31536000; includeSubDomains; preload`
           ]
         }
       }

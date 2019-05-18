@@ -69,12 +69,3 @@ const H1 = styled.h1`
 const H2 = styled.h2`
   justify-self: center;
 `
-
-// const StyledExternalLink = styled(ExternalLink)`
-//   color: inherit;
-//   text-decoration: none;
-
-//   &:hover {
-//     color: ${props => props.theme.color.black.regular};
-//   }
-// `

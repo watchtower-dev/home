@@ -1,5 +1,4 @@
-import React, { Component } from "react"
-// @ts-ignore
+import React, { useState } from "react"
 import AnchorLink from "react-anchor-link-smooth-scroll"
 import Svg from "react-inlinesvg"
 import Scrollspy from "react-scrollspy"
@@ -17,73 +16,60 @@ import {
 
 const NAV_ITEMS = ["About"]
 
-interface IState {
-  mobileMenuOpen: boolean
+interface IProps {
+  showMenu?: boolean
 }
 
-class Navbar extends Component<{}, IState> {
-  public state = {
-    mobileMenuOpen: false
-  }
+export default ({ showMenu }: IProps) => {
+  const [menuOpen, setMenuOpen] = useState(false)
 
-  public render() {
-    const { mobileMenuOpen } = this.state
-
-    return (
-      <Nav {...this.props}>
-        <StyledContainer>
-          <Brand size="lg" />
-          <Mobile>
-            <button onClick={this.toggleMobileMenu} style={{ color: "black" }}>
-              <Svg src={Menu} />
-            </button>
-          </Mobile>
-          {/*
-          // @ts-ignore */}
-          <Mobile hide>{this.getNavList({})}</Mobile>
-        </StyledContainer>
-        <Mobile>
-          {mobileMenuOpen && (
-            <MobileMenu>
-              <Container>{this.getNavList({ mobile: true })}</Container>
-            </MobileMenu>
-          )}
-        </Mobile>
-      </Nav>
-    )
-  }
-
-  private toggleMobileMenu = () => {
-    this.setState(prevState => ({ mobileMenuOpen: !prevState.mobileMenuOpen }))
-  }
-
-  private closeMobileMenu = () => {
-    if (this.state.mobileMenuOpen) this.setState({ mobileMenuOpen: false })
-  }
-
-  private getNavAnchorLink = (item: any) => (
-    <AnchorLink href={`#${item.toLowerCase()}`} onClick={this.closeMobileMenu}>
+  const getNavAnchorLink = (item: any) => (
+    <AnchorLink
+      href={`#${item.toLowerCase()}`}
+      onClick={() => setMenuOpen(false)}
+    >
       {item}
     </AnchorLink>
   )
 
-  private getNavList = ({ mobile = false }) => (
-    // @ts-ignore
+  const getNavList = ({ mobile = false }) => (
     <NavListWrapper mobile={mobile}>
-      {/*
-      // @ts-ignore */}
       <Scrollspy
         items={NAV_ITEMS.map(item => item.toLowerCase())}
         currentClassName="active"
-        mobile={mobile}
         offset={-64}
       >
         {NAV_ITEMS.map(navItem => (
-          <NavItem key={navItem}>{this.getNavAnchorLink(navItem)}</NavItem>
+          <NavItem key={navItem}>{getNavAnchorLink(navItem)}</NavItem>
         ))}
       </Scrollspy>
     </NavListWrapper>
   )
-}
 
-export default Navbar
+  return (
+    <Nav>
+      <StyledContainer>
+        <Brand size="lg" />
+        {showMenu && (
+          <Mobile>
+            <button
+              aria-label="Menu"
+              onClick={() => setMenuOpen(!menuOpen)}
+              style={{ color: "black" }}
+            >
+              <Svg src={Menu} />
+            </button>
+          </Mobile>
+        )}
+        {showMenu && <Mobile hide>{getNavList({})}</Mobile>}
+      </StyledContainer>
+      <Mobile>
+        {menuOpen && (
+          <MobileMenu>
+            <Container>{getNavList({ mobile: true })}</Container>
+          </MobileMenu>
+        )}
+      </Mobile>
+    </Nav>
+  )
+}

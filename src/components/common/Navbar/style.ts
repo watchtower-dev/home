@@ -16,7 +16,7 @@ export const StyledContainer = styled(Container)`
   align-items: center;
 `
 
-export const NavListWrapper = styled.div`
+export const NavListWrapper = styled.div<{ mobile?: boolean }>`
   ul {
     list-style: none;
     margin: 0;
@@ -24,7 +24,7 @@ export const NavListWrapper = styled.div`
     display: flex;
     flex-direction: row;
 
-    ${({ mobile }: any) =>
+    ${({ mobile }) =>
       mobile &&
       `
         flex-direction: column;
@@ -62,7 +62,7 @@ export const MobileMenu = styled.div`
   padding-bottom: 15px;
 `
 
-export const Mobile = styled.div`
+export const Mobile = styled.div<{ hide?: boolean }>`
   display: none;
 
   @media (max-width: ${props => props.theme.screen.md}) {
@@ -70,7 +70,6 @@ export const Mobile = styled.div`
   }
 
   ${props =>
-    // @ts-ignore
     props.hide &&
     `
     display: block;

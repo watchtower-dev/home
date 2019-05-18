@@ -1,4 +1,6 @@
-export default {
+import { DefaultTheme } from "styled-components"
+
+const theme: DefaultTheme = {
   color: {
     black: {
       light: "#564F62",
@@ -31,3 +33,5 @@ export default {
     xs: "575px"
   }
 }
+
+export default theme

@@ -8,7 +8,6 @@ export default createGlobalStyle`
   ${normalize};
 
   body {
-    // @ts-ignore
     font-family: ${props => props.theme.font.secondary};
   }
 
@@ -18,51 +17,40 @@ export default createGlobalStyle`
   }
 
   h1, h2 {
-    // @ts-ignore
     font-family: ${props => props.theme.font.primary};
   }
 
   h1 {
-    // @ts-ignore
     ${props => props.theme.fontSize.xlarge};
   }
 
   h2 {
-    // @ts-ignore
     ${props => props.theme.fontSize.larger};
   }
 
   h3 {
-    // @ts-ignore
     ${props => props.theme.fontSize.large};
   }
 
   p {
-    // @ts-ignore
     ${props => props.theme.fontSize.regular};
-    // @ts-ignore
     color: ${props => props.theme.color.black.light};
   }
 
-  // @ts-ignore
   @media (max-width: ${props => props.theme.screen.sm}) {
     h1 {
-      // @ts-ignore
       ${props => props.theme.fontSize.larger};
     }
 
     h2 {
-      // @ts-ignore
       ${props => props.theme.fontSize.large};
     }
 
     h3 {
-      // @ts-ignore
       ${props => props.theme.fontSize.regular};
     }
 
     p {
-      // @ts-ignore
       ${props => props.theme.fontSize.small};
     }
   }

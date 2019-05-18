@@ -1,4 +1,4 @@
-// @ts-ignore
+import { error, log } from "@therockstorm/utils"
 import addToMailchimp from "gatsby-plugin-mailchimp"
 import React, { useState } from "react"
 import styled from "styled-components"
@@ -10,12 +10,24 @@ export default ({ inverse }: { inverse?: boolean }) => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
-    const r = await addToMailchimp(email)
-    setResult(
-      r.result === "error"
-        ? { msg: "Invalid email, please try again.", success: false }
-        : { msg: "You're signed up, stay tuned for an invite!", success: true }
-    )
+    try {
+      const r = await addToMailchimp(email)
+      log(r.msg)
+      setResult(
+        r.result === "error"
+          ? { msg: "Invalid email, please try again.", success: false }
+          : {
+              msg: "You're signed up, stay tuned for an invite!",
+              success: true
+            }
+      )
+    } catch (e) {
+      error(e)
+      setResult({
+        msg: "Failed, please disable content blockers and try again.",
+        success: false
+      })
+    }
   }
 
   return (
@@ -31,18 +43,19 @@ export default ({ inverse }: { inverse?: boolean }) => {
       <div style={{ display: `flex`, flexDirection: `column` }}>
         <Form onSubmit={handleSubmit}>
           <input
-            type="email"
+            aria-label="Email Address"
+            name="email"
             onChange={e => setEmail(e.target.value)}
             placeholder="Email Address"
-            name="email"
+            type="email"
           />
-          <Button type="submit" value="Join Beta" />
+          <Button aria-label="Join Beta" type="submit" value="Join Beta" />
         </Form>
         {result.msg ? (
           <p
             style={{
               color: result.success ? "#211E26" : "#d00000",
-              fontSize: `20px`
+              fontSize: `18px`
             }}
           >
             {result.msg}

@@ -6,7 +6,13 @@ import Brand from "../common/Brand"
 import ExternalLink from "../common/ExternalLink"
 import { Container } from "../global"
 
-const SOCIAL = [{ icon: Github, link: "https://github.com/watchtower-dev" }]
+const SOCIAL = [
+  {
+    icon: Github,
+    label: "Link to Github Profile",
+    link: "https://github.com/watchtower-dev"
+  }
+]
 
 export default () => (
   <React.Fragment>
@@ -17,8 +23,8 @@ export default () => (
           <div>{new Date().getFullYear()} All Rights Reserved</div>
         </Copyright>
         <SocialIcons>
-          {SOCIAL.map(({ icon, link }, i) => (
-            <ExternalLink key={i} href={link}>
+          {SOCIAL.map(({ icon, label, link }, i) => (
+            <ExternalLink key={i} href={link} label={label}>
               <Svg src={icon} />
             </ExternalLink>
           ))}
@@ -30,6 +36,7 @@ export default () => (
 
 const SocialIcons = styled.div`
   display: flex;
+  margin: 0 0.75em;
 
   svg {
     color: ${props => props.theme.color.black.regular};

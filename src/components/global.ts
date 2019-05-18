@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const Container = styled.div`
+export const Container = styled.div<{ fluid?: boolean }>`
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
@@ -23,7 +23,6 @@ export const Container = styled.div`
   }
 
   ${props =>
-    // @ts-ignore
     props.fluid &&
     `
     max-width: 1200px !important;
@@ -35,7 +34,7 @@ export const Container = styled.div`
   }
 `
 
-export const Section = styled.section`
+export const Section = styled.section<{ accent?: string }>`
   padding: 128px 0;
   overflow: hidden;
 
@@ -44,10 +43,8 @@ export const Section = styled.section`
   }
 
   ${props =>
-    // @ts-ignore
     props.accent &&
     `background-color: ${
-      // @ts-ignore
       props.accent === "secondary"
         ? props.theme.color.white.dark
         : props.theme.color.primary
