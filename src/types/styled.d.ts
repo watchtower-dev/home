@@ -1,6 +1,7 @@
 import "styled-components"
 
 declare module "styled-components" {
+  // tslint:disable-next-line
   export interface DefaultTheme {
     color: {
       black: {
@@ -13,6 +14,10 @@ declare module "styled-components" {
       white: {
         dark: string
         regular: string
+      }
+      inlineCodeBg: {
+        dark: string
+        light: string
       }
     }
     font: string

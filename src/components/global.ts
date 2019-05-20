@@ -35,11 +35,10 @@ export const Container = styled.div<{ fluid?: boolean }>`
 `
 
 export const Section = styled.section<{ accent?: string }>`
-  padding: 128px 0;
-  overflow: hidden;
+  padding: 64px 0;
 
   @media (max-width: ${props => props.theme.screen.md}) {
-    padding: 96px 0;
+    padding: 48px 0;
   }
 
   ${props =>

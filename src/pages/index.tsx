@@ -8,7 +8,7 @@ import Navbar from "../components/Navbar"
 
 export default () => (
   <Layout title={"API Monitoring, Testing, and Uptime"}>
-    <Navbar links={["About"]} />
+    <Navbar links={["Docs", "About"]} />
     <Header />
     <JoinBeta />
     <About />

@@ -29,7 +29,7 @@ export default ({ title, description, slug }: Props) => {
   const meta = site.siteMetadata
   const t = `${title} - ${meta.title}` || `${meta.description} - ${meta.title}`
   const desc = description || meta.description
-  const url = `${site.siteMetadata.siteUrl}${slug}`
+  const url = `${site.siteMetadata.siteUrl}${slug ? `docs${slug}` : ""}`
   return (
     <Helmet>
       <meta property="og:title" content={t} />

@@ -21,8 +21,10 @@ export default () => {
     <Wrap>
       <Container>
         <Grid>
-          <H1>Trust your APIs</H1>
-          <H2>Spot problems before your customers do with Watchtower.</H2>
+          <Title>Trust your APIs</Title>
+          <Tagline>
+            Spot problems before your customers do with Watchtower.
+          </Tagline>
           <Art>
             <Img
               fixed={data.logo.childImageSharp.fixed}
@@ -59,9 +61,13 @@ const Grid = styled.div`
     }
   }
 `
-const H1 = styled.h1`
+const Title = styled.h1`
+  ${props => props.theme.fontSize.xlarge};
   justify-self: center;
+  margin: 0;
 `
-const H2 = styled.h2`
+const Tagline = styled.h2`
+  ${props => props.theme.fontSize.larger};
   justify-self: center;
+  margin: 0;
 `

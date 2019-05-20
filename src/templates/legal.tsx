@@ -12,9 +12,8 @@ interface IProps {
   pageContext: IPageContext
 }
 
-export default ({ data, pageContext }: IProps) => {
+export default ({ data }: IProps) => {
   const doc = data.markdownRemark
-  const { previous, next } = pageContext
 
   return (
     <Layout
@@ -33,34 +32,6 @@ export default ({ data, pageContext }: IProps) => {
               <div dangerouslySetInnerHTML={{ __html: doc.html }} />
             </article>
           </main>
-          <aside>
-            <nav>
-              <ul
-                style={{
-                  display: `flex`,
-                  justifyContent: `space-between`,
-                  listStyle: `none`,
-                  margin: `50px 50px 0 0`,
-                  padding: 0
-                }}
-              >
-                <li>
-                  {previous && (
-                    <Link to={`docs${previous.fields.slug}`} rel="prev">
-                      ← {previous.frontmatter.title}
-                    </Link>
-                  )}
-                </li>
-                <li>
-                  {next && (
-                    <Link to={`docs${next.fields.slug}`} rel="next">
-                      {next.frontmatter.title} →
-                    </Link>
-                  )}
-                </li>
-              </ul>
-            </nav>
-          </aside>
         </Section>
       </Container>
       <Footer />
@@ -73,7 +44,7 @@ const H1 = styled.h1`
 `
 
 export const query = graphql`
-  query DocBySlug($slug: String!) {
+  query LegalBySlug($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       excerpt(pruneLength: 160)
       html

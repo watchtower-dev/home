@@ -1,3 +1,4 @@
+import { Link } from "gatsby"
 import React, { useState } from "react"
 import AnchorLink from "react-anchor-link-smooth-scroll"
 import Svg from "react-inlinesvg"
@@ -14,14 +15,17 @@ type Props = Partial<{
 export default ({ links = [] }: Props) => {
   const [menuOpen, setMenuOpen] = useState(false)
 
-  const getNavAnchorLink = (item: string) => (
-    <AnchorLink
-      href={`#${item.toLowerCase()}`}
-      onClick={() => setMenuOpen(false)}
-    >
-      {item}
-    </AnchorLink>
-  )
+  const getNavAnchorLink = (item: string) =>
+    item === "Docs" ? (
+      <Link to={"docs/get-started"}>{item}</Link>
+    ) : (
+      <AnchorLink
+        href={`#${item.toLowerCase()}`}
+        onClick={() => setMenuOpen(false)}
+      >
+        {item}
+      </AnchorLink>
+    )
 
   const getNavList = (mobile = false) => (
     <NavListWrapper mobile={mobile}>
@@ -105,14 +109,7 @@ const NavItem = styled.li`
 
   a {
     text-decoration: none;
-    opacity: 0.7;
     color: ${props => props.theme.color.black.regular};
-  }
-
-  &.active {
-    a {
-      opacity: 1;
-    }
   }
 `
 const MobileMenu = styled.div`

@@ -7,7 +7,7 @@ import Navbar from "../components/Navbar"
 
 export default () => (
   <Layout title="Page not found - Watchtower">
-    <Navbar />
+    <Navbar links={["Docs"]} />
     <Wrap>
       <Container>
         <Section>
@@ -21,6 +21,5 @@ export default () => (
 )
 
 const Wrap = styled.div`
-  background-color: ${props => props.theme.color.primary};
   text-align: center;
 `
