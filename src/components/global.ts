@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const Container = styled.div<{ fluid?: boolean }>`
+export const Container = styled.div`
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
@@ -20,17 +20,6 @@ export const Container = styled.div<{ fluid?: boolean }>`
 
   @media (min-width: ${props => props.theme.screen.lg}) {
     max-width: 1200px;
-  }
-
-  ${props =>
-    props.fluid &&
-    `
-    max-width: 1200px !important;
-  `};
-
-  svg {
-    width: 24px;
-    height: 24px;
   }
 `
 

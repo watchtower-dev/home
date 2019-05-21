@@ -22,7 +22,7 @@ export default ({ data, pageContext }: IProps) => {
       description={doc.frontmatter.description || doc.excerpt}
       slug={doc.fields.slug}
     >
-      <Navbar links={["Docs"]} />
+      <Navbar />
       <Container>
         <Section>
           <main>
@@ -40,7 +40,7 @@ export default ({ data, pageContext }: IProps) => {
                   display: `flex`,
                   justifyContent: `space-between`,
                   listStyle: `none`,
-                  margin: `50px 50px 0 0`,
+                  margin: `50px 0 0 0`,
                   padding: 0
                 }}
               >

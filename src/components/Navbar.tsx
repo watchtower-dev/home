@@ -1,43 +1,26 @@
 import { Link } from "gatsby"
 import React, { useState } from "react"
-import AnchorLink from "react-anchor-link-smooth-scroll"
 import Svg from "react-inlinesvg"
-import Scrollspy from "react-scrollspy"
 import styled from "styled-components"
 import Menu from "../img/menu.svg"
+import theme from "../styles/theme"
 import Brand from "./Brand"
 import { Container } from "./global"
 
 type Props = Partial<{
-  links: string[]
+  links: ILink[]
 }>
 
 export default ({ links = [] }: Props) => {
   const [menuOpen, setMenuOpen] = useState(false)
 
-  const getNavAnchorLink = (item: string) =>
-    item === "Docs" ? (
-      <Link to={"docs/get-started"}>{item}</Link>
-    ) : (
-      <AnchorLink
-        href={`#${item.toLowerCase()}`}
-        onClick={() => setMenuOpen(false)}
-      >
-        {item}
-      </AnchorLink>
-    )
-
   const getNavList = (mobile = false) => (
     <NavListWrapper mobile={mobile}>
-      <Scrollspy
-        items={links.map(l => l.toLowerCase())}
-        currentClassName="active"
-        offset={-64}
-      >
+      <ul>
         {links.map(l => (
-          <NavItem key={l}>{getNavAnchorLink(l)}</NavItem>
+          <NavItem key={l.text}>{<Link to={l.href}>{l.text}</Link>}</NavItem>
         ))}
-      </Scrollspy>
+      </ul>
     </NavListWrapper>
   )
 
@@ -50,7 +33,7 @@ export default ({ links = [] }: Props) => {
             <button
               aria-label="Menu"
               onClick={() => setMenuOpen(!menuOpen)}
-              style={{ color: "black" }}
+              style={{ color: theme.color.black.regular }}
             >
               <Svg src={Menu} />
             </button>
@@ -78,9 +61,9 @@ const Nav = styled.nav`
   z-index: 1000;
 `
 const StyledContainer = styled(Container)`
+  align-items: center;
   display: flex;
   justify-content: space-between;
-  align-items: center;
 `
 const NavListWrapper = styled.div<{ mobile?: boolean }>`
   ul {

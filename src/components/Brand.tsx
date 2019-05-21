@@ -10,7 +10,9 @@ interface IProps {
 export default ({ size }: IProps) => {
   const Title = styled.div`
     ${props =>
-      size === "sm" ? props.theme.fontSize.small : props.theme.fontSize.large};
+      size === "sm"
+        ? props.theme.fontSize.regular
+        : props.theme.fontSize.large};
   `
 
   return (
@@ -18,7 +20,7 @@ export default ({ size }: IProps) => {
       <img
         src={Logo}
         alt={"Watchtower Logo"}
-        height={size === "sm" ? "20px" : "30px"}
+        height={size === "sm" ? "25px" : "32px"}
         style={{ marginRight: "10px" }}
       />
       <Title>

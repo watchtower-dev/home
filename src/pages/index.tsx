@@ -1,18 +1,18 @@
 import React from "react"
 import About from "../components/About"
 import Footer from "../components/Footer"
+import GetStarted from "../components/GetStarted"
 import Header from "../components/Header"
-import JoinBeta from "../components/JoinBeta"
 import Layout from "../components/Layout"
 import Navbar from "../components/Navbar"
 
 export default () => (
   <Layout title={"API Monitoring, Testing, and Uptime"}>
-    <Navbar links={["Docs", "About"]} />
+    <Navbar links={[{ href: "docs/get-started", text: "Get Started" }]} />
     <Header />
-    <JoinBeta />
+    <GetStarted />
     <About />
-    <JoinBeta inverse />
+    <GetStarted inverse />
     <Footer />
   </Layout>
 )

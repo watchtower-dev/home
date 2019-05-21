@@ -82,13 +82,6 @@ module.exports = {
       }
     },
     `gatsby-plugin-catch-links`,
-    {
-      resolve: "gatsby-plugin-mailchimp",
-      options: {
-        endpoint:
-          "https://rockywarren.us15.list-manage.com/subscribe/post?u=75d4f6bf1a757440913db553e&amp;id=82b10d3cdc"
-      }
-    },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sitemap`,

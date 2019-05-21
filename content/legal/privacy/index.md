@@ -13,7 +13,7 @@ When you visit the Site, we automatically collect certain information about your
 
 We collect Device Information using the following technologies:
 
-- “Cookies” are data files that are placed on your device or computer and often include an anonymous unique identifier. For more information about cookies, and how to disable cookies, visit http://www.allaboutcookies.org.
+- “Cookies” are data files that are placed on your device or computer and often include an anonymous unique identifier. For more information about cookies, and how to disable cookies, visit [allaboutcookies.org](http://www.allaboutcookies.org/).
 - “Log files” track actions occurring on the Site, and collect data including your IP address, browser type, Internet service provider, referring/exit pages, and date/time stamps.
 - “Web beacons,” “tags,” and “pixels” are electronic files used to record information about how you browse the Site.
 
@@ -27,7 +27,7 @@ We use the Order Information that we collect generally to fulfill any orders pla
 
 We use the Device Information that we collect to help us screen for potential risk and fraud (in particular, your IP address), and more generally to improve and optimize our Site (for example, by generating analytics about how our customers browse and interact with the Site, and to assess the success of our marketing and advertising campaigns).
 
-We share your Personal Information with third parties to help us use your Personal Information, as described above. For example, we use Google Analytics to help us understand how our customers use the Site. To read more about how Google uses your Personal Information, visit https://www.google.com/intl/en/policies/privacy/. To opt-out of Google Analytics, visit https://tools.google.com/dlpage/gaoptout.
+We share your Personal Information with third parties to help us use your Personal Information, as described above. For example, we use Google Analytics to help us understand how our customers use the Site. To read more about how Google uses your Personal Information, visit [Google's Privacy & Terms](https://policies.google.com/privacy). To opt-out of Google Analytics, visit [Google Analytics Opt-out](https://tools.google.com/dlpage/gaoptout).
 
 We may share some or all of your personal information with our parent company, subsidiaries, joint ventures, or other companies under a common control ("Affiliates"), in which case we will require our Affiliates to honor this Privacy Policy.
 

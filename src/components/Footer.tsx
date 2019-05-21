@@ -32,7 +32,9 @@ export default () => (
             {new Date().getFullYear()} All Rights Reserved
           </Column>
           <Column>
-            <Link to="legal/privacy">Privacy</Link>
+            <Link to="legal/privacy" style={{ marginTop: `10px` }}>
+              Privacy
+            </Link>
             <Link to="legal/terms">Terms</Link>
           </Column>
         </Row>
@@ -61,7 +63,7 @@ const HR = styled.hr`
     ${props => props.theme.color.black.regular},
     ${props => props.theme.color.white.dark}
   );
-  max-width: 80%;
+  max-width: 90%;
   margin: 20px auto;
 `
 const SocialIcons = styled.div`
@@ -78,9 +80,10 @@ const SocialIcons = styled.div`
   }
 `
 const Column = styled.div`
+  height: 50px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
   margin-right: 1.5em;
   ${props => props.theme.fontSize.xsmall};
 `

@@ -7,7 +7,7 @@ import Global from "../img/global.svg"
 import { Container, Section } from "./global"
 
 export default () => (
-  <Section id="about">
+  <Section>
     <Container>
       <Grid>
         <div>
@@ -88,7 +88,7 @@ const Grid = styled.div<{ inverse?: boolean }>`
 `
 const Art = styled.figure`
   margin: 0;
-  max-width: 380px;
+  max-width: 340px;
   width: 100%;
 
   svg {

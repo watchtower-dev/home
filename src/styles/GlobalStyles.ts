@@ -68,6 +68,11 @@ export default createGlobalStyle`
     cursor: pointer;
   }
 
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
   code[class*="language-"],
   pre[class*="language-"] {
     font-size: 95%;

@@ -37,3 +37,8 @@ interface ISite {
     title: string
   }
 }
+
+interface ILink {
+  href: string
+  text: string
+}
