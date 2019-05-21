@@ -8,7 +8,9 @@ interface IProps {
 }
 
 export default ({ size }: IProps) => {
-  const Title = styled.div`
+  const StyledLink = styled(Link)`
+    color: ${props => props.theme.color.black.regular};
+    text-decoration: none;
     ${props =>
       size === "sm"
         ? props.theme.fontSize.regular
@@ -16,25 +18,21 @@ export default ({ size }: IProps) => {
   `
 
   return (
-    <Wrap>
-      <img
-        src={Logo}
-        alt={"Watchtower Logo"}
-        height={size === "sm" ? "25px" : "32px"}
-        style={{ marginRight: "10px" }}
-      />
-      <Title>
-        <Link to="/">Watchtower</Link>
-      </Title>
-    </Wrap>
+    <StyledLink to="/">
+      <Wrap>
+        <img
+          src={Logo}
+          alt={"Watchtower Logo"}
+          height={size === "sm" ? "25px" : "32px"}
+          style={{ marginRight: "10px" }}
+        />
+        Watchtower
+      </Wrap>
+    </StyledLink>
   )
 }
 
 const Wrap = styled.div`
   display: flex;
   align-items: center;
-  a {
-    color: ${props => props.theme.color.black.regular};
-    text-decoration: none;
-  }
 `

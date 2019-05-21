@@ -53,7 +53,7 @@ export default ({ links = [] }: Props) => {
 }
 
 const Nav = styled.nav`
-  padding: 6px 0;
+  padding: 12px 0;
   background-color: ${props => props.theme.color.primary};
   position: fixed;
   width: 100%;

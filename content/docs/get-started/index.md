@@ -54,4 +54,4 @@ Welcome to Watchtower! Validate your APIs return expected responses in seconds,
 >   -H 'Authorization: Bearer <YOUR_TOKEN>'
 > ```
 
-6. Refreshing [app.watchtower.dev](https://app.watchtower.dev) should show your new monitor scheduled to run every 60 minutes!
+6. [The App](https://app.watchtower.dev) now shows your new monitor scheduled to run every 60 minutes!

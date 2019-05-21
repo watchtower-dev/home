@@ -32,10 +32,8 @@ export default () => (
             {new Date().getFullYear()} All Rights Reserved
           </Column>
           <Column>
-            <Link to="legal/privacy" style={{ marginTop: `10px` }}>
-              Privacy
-            </Link>
-            <Link to="legal/terms">Terms</Link>
+            <Link to="legal/privacy">Privacy Policy</Link>
+            <Link to="legal/terms">Terms of Service</Link>
           </Column>
         </Row>
         <SocialIcons>
@@ -80,16 +78,14 @@ const SocialIcons = styled.div`
   }
 `
 const Column = styled.div`
-  height: 50px;
+  height: 48px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin-right: 1.5em;
-  ${props => props.theme.fontSize.xsmall};
 `
 const Row = styled.div`
   display: flex;
-  align-items: center;
   ${props => props.theme.fontSize.xsmall};
 
   a {

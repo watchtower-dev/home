@@ -10,6 +10,7 @@ export default createGlobalStyle`
   body {
     font-family: ${props => props.theme.font};
     font-weight: 300;
+    line-height: 150%;
   }
 
   h1, h2, h3 {
