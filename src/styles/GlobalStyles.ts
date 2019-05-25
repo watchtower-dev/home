@@ -10,7 +10,6 @@ export default createGlobalStyle`
   body {
     font-family: ${props => props.theme.font};
     font-weight: 300;
-    line-height: 150%;
   }
 
   h1, h2, h3 {
@@ -33,6 +32,7 @@ export default createGlobalStyle`
     margin: 0
     ${props => props.theme.fontSize.small};
     color: ${props => props.theme.color.black.light};
+    line-height: 150%;
   }
 
   p {

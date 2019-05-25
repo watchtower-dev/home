@@ -7,7 +7,9 @@ const theme: DefaultTheme = {
       lighter: "#ABA8AF",
       regular: "#211E26"
     },
+    // https://material.io/design/color/#tools-for-picking-colors
     primary: "#639ce7",
+    // https://material.io/tools/color/#!/?view.left=0&view.right=0&primary.color=639ce7&secondary.color=ae63e7
     secondary: "#266eb4",
     white: {
       dark: "#F6F6F6",
