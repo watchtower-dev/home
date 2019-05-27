@@ -1,105 +1,97 @@
-import { Link } from "gatsby"
+import { Theme } from "@material-ui/core"
+import Container from "@material-ui/core/Container"
+import Grid from "@material-ui/core/Grid"
+import { makeStyles } from "@material-ui/core/styles"
+import Typography from "@material-ui/core/Typography"
 import React from "react"
-import Svg from "react-inlinesvg"
-import styled from "styled-components"
-import Github from "../img/github.svg"
-import Twitter from "../img/twitter.svg"
-import Brand from "./Brand"
+import GithubIcon from "../icons/Github"
+import TwitterIcon from "../icons/Twitter"
 import ExternalLink from "./ExternalLink"
-import { Container } from "./global"
+import Link from "./link"
 
 const social = [
   {
-    icon: Github,
+    icon: GithubIcon,
     label: "Link to Github Profile",
     link: "https://github.com/watchtower-dev"
   },
   {
-    icon: Twitter,
+    icon: TwitterIcon,
     label: "Link to Twitter Profile",
     link: "https://twitter.com/watchtower_dev"
   }
 ]
 
-export default () => (
-  <React.Fragment>
-    <Wrap>
-      <HR />
-      <StyledContainer>
-        <Row>
-          <Column>
-            <Brand size="sm" />
-            {new Date().getFullYear()} All Rights Reserved
-          </Column>
-          <Column>
-            <Link to="legal/privacy">Privacy Policy</Link>
-            <Link to="legal/terms">Terms of Service</Link>
-          </Column>
-        </Row>
-        <SocialIcons>
-          {social.map(({ icon, label, link }, i) => (
-            <ExternalLink key={i} href={link} label={label}>
-              <Svg src={icon} />
-            </ExternalLink>
-          ))}
-        </SocialIcons>
-      </StyledContainer>
-    </Wrap>
-  </React.Fragment>
-)
-
-const Wrap = styled.footer`
-  margin-bottom: 40px;
-`
-const HR = styled.hr`
-  border: 0;
-  height: 1px;
-  background: ${props => props.theme.color.black.regular};
-  background-image: linear-gradient(
-    to right,
-    ${props => props.theme.color.white.dark},
-    ${props => props.theme.color.black.regular},
-    ${props => props.theme.color.white.dark}
-  );
-  max-width: 90%;
-  margin: 20px auto;
-`
-const SocialIcons = styled.div`
-  display: flex;
-  margin: 0 0.75em;
-
-  svg {
-    color: ${props => props.theme.color.black.regular};
-    margin: 0 8px;
+const useStyles = makeStyles(({ breakpoints, palette, spacing }: Theme) => ({
+  footer: {
+    borderTop: `1px solid ${palette.divider}`,
+    marginTop: spacing(8),
+    paddingBottom: spacing(3),
+    paddingTop: spacing(3),
+    [breakpoints.up("sm")]: {
+      paddingBottom: spacing(6),
+      paddingTop: spacing(6)
+    }
+  },
+  icon: {
+    color: palette.text.secondary,
+    marginRight: spacing(2),
+    marginTop: spacing(0.5)
+  },
+  list: {
+    listStyle: `none`,
+    margin: 0,
+    padding: 0
   }
+}))
 
-  @media (max-width: ${props => props.theme.screen.sm}) {
-    margin-top: 40px;
-  }
-`
-const Column = styled.div`
-  height: 48px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-right: 1.5em;
-`
-const Row = styled.div`
-  display: flex;
-  ${props => props.theme.fontSize.xsmall};
+export default () => {
+  const classes = useStyles()
 
-  a {
-    text-decoration: none;
-    color: ${props => props.theme.color.black.regular};
-  }
-`
-const StyledContainer = styled(Container)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  @media (max-width: ${props => props.theme.screen.sm}) {
-    flex-direction: column;
-    text-align: center;
-  }
-`
+  return (
+    <React.Fragment>
+      <Container component="footer" className={classes.footer}>
+        <Grid container spacing={2} justify="space-evenly">
+          <Grid item xs={6} sm={4}>
+            <ul className={classes.list}>
+              <li>
+                <Link
+                  to="/legal/privacy"
+                  variant="subtitle1"
+                  color="textSecondary"
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/legal/terms"
+                  variant="subtitle1"
+                  color="textSecondary"
+                >
+                  Terms of Service
+                </Link>
+              </li>
+            </ul>
+          </Grid>
+          <Grid item xs={6} sm={2}>
+            <ul className={classes.list}>
+              <li>
+                {social.map(({ icon: Icon, label, link }, i) => (
+                  <ExternalLink key={i} href={link} label={label}>
+                    <Icon className={classes.icon} />
+                  </ExternalLink>
+                ))}
+              </li>
+              <li>
+                <Typography variant="caption" color="textSecondary">
+                  © {new Date().getFullYear()} Watchtower.dev
+                </Typography>
+              </li>
+            </ul>
+          </Grid>
+        </Grid>
+      </Container>
+    </React.Fragment>
+  )
+}

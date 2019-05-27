@@ -60,12 +60,27 @@ exports.createPages = ({ graphql, actions }) =>
     return null
   })
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
+exports.onCreateNode = ({ node, actions: { createNodeField }, getNode }) => {
   if (node.internal.type === `MarkdownRemark`) {
-    actions.createNodeField({
+    createNodeField({
       name: `slug`,
       node,
       value: createFilePath({ node, getNode })
+    })
+  }
+}
+
+exports.onCreatePage = async ({ page, actions: { createPage } }) => {
+  if (page.path.match(/^\/app/)) {
+    page.matchPath = "/app/*"
+    createPage(page)
+  }
+}
+
+exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
+  if (stage === "build-html") {
+    actions.setWebpackConfig({
+      module: { rules: [{ test: /auth0-js/, use: loaders.null() }] }
     })
   }
 }

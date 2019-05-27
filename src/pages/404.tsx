@@ -1,25 +1,32 @@
+import { Theme } from "@material-ui/core"
+import Container from "@material-ui/core/Container"
+import { makeStyles } from "@material-ui/core/styles"
+import Typography from "@material-ui/core/Typography"
 import React from "react"
-import styled from "styled-components"
+import AppBar from "../components/AppBar"
 import Footer from "../components/Footer"
-import { Container, Section } from "../components/global"
 import Layout from "../components/Layout"
-import Navbar from "../components/Navbar"
 
-export default () => (
-  <Layout title="Page not found - Watchtower">
-    <Navbar links={["Docs"]} />
-    <Wrap>
-      <Container>
-        <Section>
-          <h1>Page not found!</h1>
-          <p>Sorry, but the page you were looking for could not be found.</p>
-        </Section>
+const useStyles = makeStyles(({ spacing }: Theme) => ({
+  root: {
+    marginTop: spacing(3),
+    textAlign: `center`
+  }
+}))
+
+export default () => {
+  const classes = useStyles()
+
+  return (
+    <Layout title="Page not found - Watchtower">
+      <AppBar />
+      <Container className={classes.root}>
+        <Typography variant="h4">Page not found!</Typography>
+        <Typography variant="subtitle1">
+          Sorry, but the page you were looking for could not be found.
+        </Typography>
       </Container>
-    </Wrap>
-    <Footer />
-  </Layout>
-)
-
-const Wrap = styled.div`
-  text-align: center;
-`
+      <Footer />
+    </Layout>
+  )
+}
