@@ -45,6 +45,10 @@ const useStyles = makeStyles(({ breakpoints, palette, spacing }: Theme) => ({
   }
 }))
 
+const SecondaryLink = (props: any) => (
+  <Link variant="subtitle1" color="textSecondary" {...props} />
+)
+
 export default () => {
   const classes = useStyles()
 
@@ -55,22 +59,14 @@ export default () => {
           <Grid item xs={6} sm={4}>
             <ul className={classes.list}>
               <li>
-                <Link
-                  to="/legal/privacy"
-                  variant="subtitle1"
-                  color="textSecondary"
-                >
+                <SecondaryLink to="/legal/privacy">
                   Privacy Policy
-                </Link>
+                </SecondaryLink>
               </li>
               <li>
-                <Link
-                  to="/legal/terms"
-                  variant="subtitle1"
-                  color="textSecondary"
-                >
+                <SecondaryLink to="/legal/terms">
                   Terms of Service
-                </Link>
+                </SecondaryLink>
               </li>
             </ul>
           </Grid>

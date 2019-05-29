@@ -1,5 +1,4 @@
 import { Theme } from "@material-ui/core"
-import Link from "@material-ui/core/Link"
 import Table from "@material-ui/core/Table"
 import TableBody from "@material-ui/core/TableBody"
 import TableCell from "@material-ui/core/TableCell"
@@ -34,7 +33,7 @@ export default () => {
   const classes = useStyles()
   return (
     <React.Fragment>
-      <Title>Recent Runs</Title>
+      <Title>Monitors</Title>
       <Table size="small">
         <TableHead>
           <TableRow>
@@ -53,11 +52,11 @@ export default () => {
           ))}
         </TableBody>
       </Table>
-      <div className={classes.seeMore}>
+      {/* <div className={classes.seeMore}>
         <Link color="primary" href="javascript:;">
-          See more runs
+          See more
         </Link>
-      </div>
+      </div> */}
     </React.Fragment>
   )
 }

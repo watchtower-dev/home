@@ -23,7 +23,7 @@ export default ({ inverse }: { inverse?: boolean }) => {
         marginTop: inverse ? `0` : theme.spacing(10)
       }}
     >
-      <Link to="docs/get-started">
+      <Link to="/docs/get-started">
         <Button color="primary" size="large" variant="contained">
           Get Started
         </Button>

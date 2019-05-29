@@ -4,7 +4,7 @@ import { Auth0DecodedHash, Auth0Error, WebAuth } from "auth0-js"
 
 export const isBrowser = typeof window !== "undefined"
 
-const data = { aId: "", exp: 0, tok: "" }
+const data = { aId: "", tok: "" }
 const baseUrl = isBrowser
   ? `${window.location.protocol}//${window.location.host}`
   : `localhost:8000`
@@ -23,7 +23,6 @@ export const login = () => (isBrowser ? auth0.authorize() : undefined)
 
 export const logout = () => {
   data.aId = ""
-  data.exp = 0
   data.tok = ""
   localStorage.setItem("loggedIn", "false")
 
@@ -44,10 +43,7 @@ export const handleAuthentication = (
 ) => (isBrowser ? auth0.parseHash(setSession(callback)) : undefined)
 
 export const isAuthenticated = (): boolean =>
-  isBrowser
-    ? localStorage.getItem("loggedIn") === "true" &&
-      new Date().getTime() < data.exp
-    : false
+  isBrowser ? localStorage.getItem("loggedIn") === "true" : false
 
 const setSession = (callback: () => void) => (
   err: Auth0Error | null,
@@ -69,7 +65,6 @@ const setSession = (callback: () => void) => (
 
   data.aId = res.idTokenPayload.sub.replace("auth0|", "")
   data.tok = res.accessToken
-  data.exp = (res.expiresIn || 0) * 1000 + new Date().getTime()
   localStorage.setItem("loggedIn", "true")
   Sentry.configureScope(s => s.setUser({ id: data.aId }))
   return callback()
