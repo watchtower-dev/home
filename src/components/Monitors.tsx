@@ -1,62 +1,61 @@
-import { Theme } from "@material-ui/core"
-import Table from "@material-ui/core/Table"
-import TableBody from "@material-ui/core/TableBody"
-import TableCell from "@material-ui/core/TableCell"
-import TableHead from "@material-ui/core/TableHead"
-import TableRow from "@material-ui/core/TableRow"
-import { makeStyles } from "@material-ui/styles"
+import Button from "@material-ui/core/Button"
+import Card from "@material-ui/core/Card"
+import CardActions from "@material-ui/core/CardActions"
+import CardContent from "@material-ui/core/CardContent"
+import Grid from "@material-ui/core/Grid"
+import Typography from "@material-ui/core/Typography"
+import { IMonRes } from "@watchtower-dev/sdk-js"
 import React from "react"
+import Link from "./link"
+import Loader from "./Loader"
 import Title from "./Title"
 
-const createData = (
-  id: number,
-  date: string,
-  name: string,
-  shipTo: string
-) => ({ id, date, name, shipTo })
-
-const rows = [
-  createData(0, "Just Now", "Production", "Passed"),
-  createData(1, "5 minutes ago", "Production", "Passed"),
-  createData(2, "7 minutes ago", "Sandbox", "Passed"),
-  createData(3, "10 minutes ago", "Production", "Failed"),
-  createData(4, "12 minutes ago", "Sandbox", "Passed")
-]
-
-const useStyles = makeStyles(({ spacing }: Theme) => ({
-  seeMore: {
-    marginTop: spacing(3)
-  }
-}))
-
-export default () => {
-  const classes = useStyles()
-  return (
-    <React.Fragment>
-      <Title>Monitors</Title>
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell>Date</TableCell>
-            <TableCell>Monitor</TableCell>
-            <TableCell>Result</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.id}>
-              <TableCell>{row.date}</TableCell>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.shipTo}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-      {/* <div className={classes.seeMore}>
-        <Link color="primary" href="javascript:;">
-          See more
-        </Link>
-      </div> */}
-    </React.Fragment>
-  )
-}
+export default ({
+  loading,
+  mons
+}: {
+  loading: boolean
+  mons: IMonRes[]
+  path: string
+}) => (
+  <>
+    <Title>Monitors</Title>
+    <Grid container spacing={2}>
+      {loading ? (
+        <Grid item xs={12} sm={6}>
+          <Card elevation={0}>
+            <CardContent style={{ padding: 10 }}>
+              <Typography variant="h5" component="h2">
+                <Loader />
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+      ) : (
+        mons.map(m => (
+          <Grid key={m.id} item xs={12} sm={6}>
+            <Card elevation={0}>
+              <CardContent>
+                <Typography variant="h5" component="h2">
+                  {m.name}
+                </Typography>
+                <Typography variant="body2" component="p">
+                  {m.schedule === 0
+                    ? "Disabled"
+                    : `Every ${m.schedule} minutes`}
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button size="small">
+                  <Link color="textPrimary" to={`app/${m.id}`} underline="none">
+                    View Runs
+                  </Link>
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        ))
+      )}
+    </Grid>
+  </>
+)

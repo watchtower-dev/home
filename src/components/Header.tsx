@@ -35,12 +35,13 @@ export default () => {
         <Grid alignItems="center" container direction="column" spacing={5}>
           <Grid item xs={12}>
             <Typography component="h1" variant="h3">
-              Trust your APIs
+              Spot problems before your customers.
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography component="h2" variant="h4">
-              Spot problems before your customers do.
+            <Typography component="h2" variant="h5">
+              Watchtower monitors uptime day and night. You get notified at the
+              first sign of trouble.
             </Typography>
           </Grid>
           <Grid item xs={12}>

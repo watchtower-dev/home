@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet"
 import theme from "../../src/theme"
 
 export default ({ children }: { children: ReactNodeLike }) => (
-  <React.Fragment>
+  <>
     <Helmet>
       <meta
         name="viewport"
@@ -17,5 +17,5 @@ export default ({ children }: { children: ReactNodeLike }) => (
       <CssBaseline />
       {children}
     </ThemeProvider>
-  </React.Fragment>
+  </>
 )

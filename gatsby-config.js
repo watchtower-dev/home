@@ -1,13 +1,15 @@
 //https://csp-evaluator.withgoogle.com/
 const data = `data:`
 const ga = `https://www.google-analytics.com`
+const a0 = `https://watchtower-test.auth0.com`
 const none = `'none'`
 const self = `'self'`
 const unsafe = `'unsafe-inline'`
 const csp = {
-  "connect-src": [self, ga, "https://sentry.io"],
+  "connect-src": [self, a0, ga, "https://sentry.io"],
   "default-src": [none],
   "font-src": [self, "https://fonts.gstatic.com"],
+  "frame-src": [self, a0],
   "img-src": [self, ga, data],
   "manifest-src": [self],
   "prefetch-src": [self, "https://*.google.com", ga],
@@ -72,7 +74,7 @@ module.exports = {
       options: {
         headers: {
           "/*": [
-            `Content-Security-Policy: ${toPolicy(csp)}`,
+            // `Content-Security-Policy: ${toPolicy(csp)}`,
             `Feature-Policy: ${toPolicy(fp)}`,
             `Referrer-Policy: same-origin`,
             `Strict-Transport-Security: max-age=31536000; includeSubDomains; preload`
@@ -93,7 +95,13 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-sitemap`,
     "gatsby-plugin-top-layout",
-    `gatsby-plugin-typescript`,
+    {
+      resolve: `gatsby-plugin-typescript`,
+      options: {
+        isTSX: true,
+        allExtensions: true
+      }
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

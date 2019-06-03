@@ -53,7 +53,7 @@ export default () => {
   const classes = useStyles()
 
   return (
-    <React.Fragment>
+    <>
       <Container component="footer" className={classes.footer}>
         <Grid container spacing={2} justify="space-evenly">
           <Grid item xs={6} sm={4}>
@@ -88,6 +88,6 @@ export default () => {
           </Grid>
         </Grid>
       </Container>
-    </React.Fragment>
+    </>
   )
 }

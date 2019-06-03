@@ -6,8 +6,8 @@ date: "2019-05-20"
 
 Welcome to Watchtower! Validate your APIs return expected responses in seconds,
 
-1. Head to [app.watchtower.dev](https://app.watchtower.dev) to create an account. It's free while in Beta!
-2. Once logged in, click the Account icon in the upper right and select "API Keys"
+1. Head to [watchtower.dev/app](https://www.watchtower.dev/app) to create an account. It's free while in Beta!
+2. Once logged in, select "API Keys"
 3. Copy your ID and Secret into the following command to get an API token,
 
 > ```shell
@@ -24,7 +24,6 @@ Welcome to Watchtower! Validate your APIs return expected responses in seconds,
 4. To test your API, you'll create a `monitor` with various checks. Here's a simple example asserting a `200` status,
 
 > ```yaml
-> version: 1
 > checks:
 >   getExample:
 >     request:
@@ -54,4 +53,4 @@ Welcome to Watchtower! Validate your APIs return expected responses in seconds,
 >   -H 'Authorization: Bearer <YOUR_TOKEN>'
 > ```
 
-6. [The App](https://app.watchtower.dev) now shows your new monitor scheduled to run every 60 minutes!
+6. [The App](https://www.watchtower.dev/app) now shows your new monitor scheduled to run every 60 minutes!

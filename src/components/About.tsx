@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography"
 import useMediaQuery from "@material-ui/core/useMediaQuery"
 import { ReactNodeLike } from "prop-types"
 import React from "react"
+import Clock from "../icons/Clock"
 import Confirmation from "../icons/Confirmation"
 import Downtime from "../icons/Downtime"
 import Global from "../icons/Global"
@@ -85,8 +86,8 @@ export default () => {
       <Grid container spacing={5}>
         <Grid item xs={12} sm={6}>
           <Text
-            title="Reduce downtime"
-            desc="Downtime is expensive. Catch bugs in test environments and reduce debugging times if they reach production."
+            title="Reduce expensive downtime"
+            desc="Would you know if your site went down overnight? Catch bugs in test environments. And reduce debugging times when they reach production."
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -96,20 +97,29 @@ export default () => {
           first={<Confirmation className={classes.art} />}
           second={
             <Text
-              title="Prevent regressions"
-              desc="Trust your APIs by verifying responses are returning expected data."
+              title="Trust your APIs"
+              desc="Prevent regressions by verifying responses are returning expected data."
             />
           }
         />
         <Grid item xs={12} sm={6}>
           <Text
             title="Monitor globally"
-            desc="Test your app worldwide on any schedule to catch problems before your customers, wherever they may be."
+            desc="Test your app worldwide on any schedule to catch problems before your customers. Wherever they may be."
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <Global className={classes.art} />
         </Grid>
+        <Inverse
+          first={<Clock className={classes.art} />}
+          second={
+            <Text
+              title="Save time"
+              desc="Put an end to clunky UIs with no way to version or rollback changes. Tests are just text files. Check them into source control with your code."
+            />
+          }
+        />
       </Grid>
     </Container>
   )

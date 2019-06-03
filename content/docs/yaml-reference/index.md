@@ -7,7 +7,7 @@ date: "2019-05-21"
 Here is a list of all available properties in Watchtower's YAML files.
 
 ```yaml
-version: 1 # Required, only version currently supported
+version: 1 # Optional, only version currently supported
 
 variables: # Variables to use below
   baseUrl: https://www.example.com
@@ -18,16 +18,16 @@ merge: # Optional YAML merge keys (https://yaml.org/type/merge.html)
     jsonPath: response.status
     equal: 200
 
-checks: # Required, checks to run
-  example1: # Required, name of check
-    request: # Required, request information, follows HAR 1.2 Spec (http://www.softwareishard.com/blog/har-12-spec/)
-      url: <$ baseUrl $>/ # Required, URL to call using variable from above
+checks: # Checks to run
+  example1: # Name of check
+    request: # Request information, follows HAR 1.2 Spec (http://www.softwareishard.com/blog/har-12-spec/)
+      url: <$ baseUrl $>/ # URL to call using variable from above
       headers: # List of headers
         - name: Content-Type
           value: application/json
       method: POST # Defaults to GET
       postData: # Data to post
-        mimeType: application/json # Required, mime type of posted data
+        mimeType: application/json # Mime type of posted data
         text: # Required unless params provided, data to post
           email: <$ email $>
         params: # Required unless text provided, URL encoded data to post

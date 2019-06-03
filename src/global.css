@@ -35,16 +35,14 @@ pre[class*="language-"] {
 }
 
 pre[class*="language-"]::-moz-selection {
-  /* Firefox */
   background: hsl(207, 4%, 16%);
 }
 
 pre[class*="language-"]::selection {
-  /* Safari */
   background: hsl(207, 4%, 16%);
 }
 
-/* Text Selection colour */
+/* Text Selection color */
 pre[class*="language-"]::-moz-selection,
 pre[class*="language-"] ::-moz-selection {
   text-shadow: none;

@@ -5,11 +5,10 @@ import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemText from "@material-ui/core/ListItemText"
 import Paper from "@material-ui/core/Paper"
 import { makeStyles } from "@material-ui/core/styles"
-import React, { useState } from "react"
+import React from "react"
 import KeyIcon from "../icons/Key"
 import MonitorIcon from "../icons/Monitor"
-import ApiKeys from "./ApiKeys"
-import Monitors from "./Monitors"
+import Link from "./link"
 import NavBar from "./NavBar"
 
 const useStyles = makeStyles(({ mixins, spacing }: Theme) => ({
@@ -34,37 +33,41 @@ const useStyles = makeStyles(({ mixins, spacing }: Theme) => ({
   }
 }))
 
-export default () => {
+const NavLink = (props: any) => (
+  <Link color="textPrimary" underline="none" {...props} />
+)
+
+export default (props: any) => {
   const classes = useStyles()
-  const [active, setActive] = useState(<Monitors />)
 
   return (
     <div className={classes.root}>
       <NavBar
         items={
           <>
-            <ListItem button onClick={() => setActive(<Monitors />)}>
-              <ListItemIcon>
-                <MonitorIcon />
-              </ListItemIcon>
-              <ListItemText primary="Monitors" />
-            </ListItem>
-            <ListItem
-              button
-              onClick={() => setActive(<ApiKeys id="123" secret="456" />)}
-            >
-              <ListItemIcon>
-                <KeyIcon />
-              </ListItemIcon>
-              <ListItemText primary="API Keys" />
-            </ListItem>
+            <NavLink to="/app">
+              <ListItem>
+                <ListItemIcon>
+                  <MonitorIcon />
+                </ListItemIcon>
+                <ListItemText primary="Monitors" />
+              </ListItem>
+            </NavLink>
+            <NavLink to="/app/keys">
+              <ListItem>
+                <ListItemIcon>
+                  <KeyIcon />
+                </ListItemIcon>
+                <ListItemText primary="API Keys" />
+              </ListItem>
+            </NavLink>
           </>
         }
       />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <Paper className={classes.paper}>{active}</Paper>
+          <Paper className={classes.paper}>{props.children}</Paper>
         </Container>
       </main>
     </div>

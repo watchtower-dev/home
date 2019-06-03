@@ -4,7 +4,7 @@ import { Auth0DecodedHash, Auth0Error, WebAuth } from "auth0-js"
 
 export const isBrowser = typeof window !== "undefined"
 
-const data = { aId: "", tok: "" }
+export const data = { aId: "", tok: "" }
 const baseUrl = isBrowser
   ? `${window.location.protocol}//${window.location.host}`
   : `localhost:8000`

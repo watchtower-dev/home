@@ -8,11 +8,7 @@ import Brand from "./Brand"
 import Link from "./link"
 
 const useStyles = makeStyles(({ breakpoints, spacing }: Theme) => ({
-  root: {
-    [breakpoints.down("sm")]: {
-      padding: spacing(0)
-    }
-  }
+  root: { [breakpoints.down("sm")]: { padding: spacing(0) } }
 }))
 
 export default () => {
