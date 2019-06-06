@@ -8,8 +8,7 @@ import { makeStyles } from "@material-ui/core/styles"
 import React from "react"
 import KeyIcon from "../icons/Key"
 import MonitorIcon from "../icons/Monitor"
-import Link from "./link"
-import NavBar from "./NavBar"
+import NavBar, { NavLink } from "./NavBar"
 
 const useStyles = makeStyles(({ mixins, spacing }: Theme) => ({
   appBarSpacer: mixins.toolbar,
@@ -33,10 +32,6 @@ const useStyles = makeStyles(({ mixins, spacing }: Theme) => ({
   }
 }))
 
-const NavLink = (props: any) => (
-  <Link color="textPrimary" underline="none" {...props} />
-)
-
 export default (props: any) => {
   const classes = useStyles()
 
@@ -45,16 +40,16 @@ export default (props: any) => {
       <NavBar
         items={
           <>
-            <NavLink to="/app">
-              <ListItem>
+            <NavLink to="app">
+              <ListItem button>
                 <ListItemIcon>
                   <MonitorIcon />
                 </ListItemIcon>
                 <ListItemText primary="Monitors" />
               </ListItem>
             </NavLink>
-            <NavLink to="/app/keys">
-              <ListItem>
+            <NavLink to="app/keys">
+              <ListItem button>
                 <ListItemIcon>
                   <KeyIcon />
                 </ListItemIcon>
@@ -63,6 +58,7 @@ export default (props: any) => {
             </NavLink>
           </>
         }
+        showMenu
       />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />

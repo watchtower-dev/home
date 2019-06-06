@@ -1,8 +1,7 @@
 import Button from "@material-ui/core/Button"
 import Container from "@material-ui/core/Container"
-import { makeStyles } from "@material-ui/core/styles"
+import { makeStyles, useTheme } from "@material-ui/core/styles"
 import React from "react"
-import theme from "../theme"
 import Link from "./link"
 
 const useStyles = makeStyles(() => ({
@@ -15,12 +14,13 @@ const useStyles = makeStyles(() => ({
 
 export default ({ inverse }: { inverse?: boolean }) => {
   const classes = useStyles()
+  const { spacing } = useTheme()
   return (
     <Container
       className={classes.root}
       style={{
-        marginBottom: inverse ? theme.spacing(10) : `0`,
-        marginTop: inverse ? `0` : theme.spacing(10)
+        marginBottom: inverse ? spacing(10) : `0`,
+        marginTop: inverse ? `0` : spacing(10)
       }}
     >
       <Link to="/docs/get-started">

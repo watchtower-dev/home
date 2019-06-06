@@ -15,10 +15,17 @@ import MenuIcon from "../icons/Menu"
 import UserIcon from "../icons/User"
 import { logout } from "../utils/auth"
 import Brand from "./Brand"
+import Link from "./link"
+
+interface IProps {
+  items: JSX.Element
+  showMenu?: boolean
+  tempDrawer?: boolean
+}
 
 const drawerWidth = 240
 const useStyles = makeStyles(
-  ({ breakpoints, mixins, spacing, transitions, zIndex }: Theme) => ({
+  ({ mixins, spacing, transitions, zIndex }: Theme) => ({
     appBar: {
       transition: transitions.create(["width", "margin"], {
         duration: transitions.duration.leavingScreen,
@@ -49,12 +56,10 @@ const useStyles = makeStyles(
         duration: transitions.duration.leavingScreen,
         easing: transitions.easing.sharp
       }),
-      width: spacing(7),
-      [breakpoints.up("sm")]: {
-        width: spacing(9)
-      }
+      width: spacing(7)
     },
-    menuButton: { marginRight: spacing(4.5) },
+    list: { width: drawerWidth },
+    menuButton: { marginRight: spacing(4.5), marginLeft: spacing(1) },
     menuButtonHidden: { display: "none" },
     paper: {
       display: "flex",
@@ -73,21 +78,62 @@ const useStyles = makeStyles(
   })
 )
 
-export default ({ items }: { items: JSX.Element }) => {
+export const NavLink = (props: any) => (
+  <Link color="textPrimary" underline="none" {...props} />
+)
+
+export default ({ items, showMenu, tempDrawer }: IProps) => {
   const classes = useStyles()
   const [anchor, setAnchor] = useState(null as null | HTMLElement)
   const menuOpen = Boolean(anchor)
-  const [open, setOpen] = useState(true)
-  const handleDrawerOpen = () => setOpen(true)
-  const handleDrawerClose = () => setOpen(false)
+  const [open, setOpen] = useState(!tempDrawer)
+  const toggleDrawer = (isOpen: boolean) => (
+    event: React.KeyboardEvent | React.MouseEvent
+  ) => {
+    if (event.type === "keydown") {
+      const k = (event as React.KeyboardEvent).key
+      if (k === "Tab" || k === "Shift") return
+    }
+    setOpen(isOpen)
+  }
   const handleMenuOpen = (e: MouseEvent<HTMLButtonElement, any>) =>
     setAnchor(e.currentTarget)
   const handleMenuClose = () => setAnchor(null)
-
   const logOut = () => {
     handleMenuClose()
     logout()
   }
+
+  const Perm = () => (
+    <Drawer
+      variant="permanent"
+      classes={{
+        paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose)
+      }}
+      open={open}
+    >
+      <div className={classes.toolbarIcon}>
+        <IconButton onClick={toggleDrawer(false)}>
+          <ChevronLeftIcon />
+        </IconButton>
+      </div>
+      <Divider />
+      <List>{items}</List>
+    </Drawer>
+  )
+
+  const Temp = () => (
+    <Drawer open={open} onClose={toggleDrawer(false)}>
+      <div
+        className={classes.list}
+        role="presentation"
+        onClick={toggleDrawer(false)}
+        onKeyDown={toggleDrawer(false)}
+      >
+        <List>{items}</List>
+      </div>
+    </Drawer>
+  )
 
   return (
     <>
@@ -101,7 +147,7 @@ export default ({ items }: { items: JSX.Element }) => {
             edge="start"
             color="inherit"
             aria-label="Open drawer"
-            onClick={handleDrawerOpen}
+            onClick={toggleDrawer(true)}
             className={clsx(
               classes.menuButton,
               open && classes.menuButtonHidden
@@ -110,47 +156,37 @@ export default ({ items }: { items: JSX.Element }) => {
             <MenuIcon />
           </IconButton>
           <Brand />
-          <IconButton
-            aria-owns={menuOpen ? "menu-appbar" : undefined}
-            aria-haspopup="true"
-            onClick={handleMenuOpen}
-            color="inherit"
-          >
-            <UserIcon />
-          </IconButton>
-          <Menu
-            id="menu-appbar"
-            anchorEl={anchor}
-            anchorOrigin={{
-              horizontal: "right",
-              vertical: "top"
-            }}
-            transformOrigin={{
-              horizontal: "right",
-              vertical: "top"
-            }}
-            open={menuOpen}
-            onClose={handleMenuClose}
-          >
-            <MenuItem onClick={logOut}>Log Out</MenuItem>
-          </Menu>
+          {showMenu && (
+            <>
+              <IconButton
+                aria-owns={menuOpen ? "menu-appbar" : undefined}
+                aria-haspopup="true"
+                onClick={handleMenuOpen}
+                color="inherit"
+              >
+                <UserIcon />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchor}
+                anchorOrigin={{
+                  horizontal: "right",
+                  vertical: "top"
+                }}
+                transformOrigin={{
+                  horizontal: "right",
+                  vertical: "top"
+                }}
+                open={menuOpen}
+                onClose={handleMenuClose}
+              >
+                <MenuItem onClick={logOut}>Log Out</MenuItem>
+              </Menu>
+            </>
+          )}
         </Toolbar>
       </AppBar>
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose)
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <List>{items}</List>
-      </Drawer>
+      {tempDrawer ? <Temp /> : <Perm />}
     </>
   )
 }

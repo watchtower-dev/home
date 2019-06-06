@@ -1,24 +1,30 @@
 import { Theme } from "@material-ui/core"
 import Container from "@material-ui/core/Container"
+import ListItem from "@material-ui/core/ListItem"
+import ListItemText from "@material-ui/core/ListItemText"
 import { makeStyles } from "@material-ui/core/styles"
 import Typography from "@material-ui/core/Typography"
 import { graphql, Link } from "gatsby"
 import React from "react"
-import AppBar from "../components/AppBar"
 import Footer from "../components/Footer"
 import Layout from "../components/Layout"
+import NavBar, { NavLink } from "../components/NavBar"
 
-const useStyles = makeStyles(({ spacing }: Theme) => ({
+const useStyles = makeStyles(({ mixins, spacing }: Theme) => ({
+  appBarSpacer: mixins.toolbar,
+  container: {
+    paddingBottom: spacing(4),
+    paddingTop: spacing(4)
+  },
+  content: { flexGrow: 1 },
   list: {
     display: `flex`,
     justifyContent: `space-between`,
     listStyle: `none`,
-    marginTop: spacing(5),
+    marginTop: spacing(4),
     padding: 0
   },
-  root: {
-    marginTop: spacing(3)
-  }
+  root: { display: "flex" }
 }))
 
 interface IProps {
@@ -34,42 +40,61 @@ export default ({ data, pageContext }: IProps) => {
 
   return (
     <Layout
-      title={doc.frontmatter.title}
       description={doc.frontmatter.description || doc.excerpt}
       slug={doc.fields.slug}
+      title={doc.frontmatter.title}
     >
-      <AppBar />
-      <Container className={classes.root}>
-        <main>
-          <article>
-            <header>
-              <Typography variant="h4">{doc.frontmatter.title}</Typography>
-            </header>
-            <div dangerouslySetInnerHTML={{ __html: doc.html }} />
-          </article>
-        </main>
-        <aside>
-          <nav>
-            <ul className={classes.list}>
-              <li>
-                {previous && (
-                  <Link to={`/docs${previous.fields.slug}`} rel="prev">
-                    ← {previous.frontmatter.title}
-                  </Link>
-                )}
-              </li>
-              <li>
-                {next && (
-                  <Link to={`/docs${next.fields.slug}`} rel="next">
-                    {next.frontmatter.title} →
-                  </Link>
-                )}
-              </li>
-            </ul>
-          </nav>
-        </aside>
-      </Container>
-      <Footer />
+      <div className={classes.root}>
+        <NavBar
+          items={
+            <>
+              <NavLink to="docs/get-started">
+                <ListItem button>
+                  <ListItemText primary="Get Started" />
+                </ListItem>
+              </NavLink>
+              <NavLink to="docs/yaml-reference">
+                <ListItem button>
+                  <ListItemText primary="YAML Reference" />
+                </ListItem>
+              </NavLink>
+            </>
+          }
+          tempDrawer
+        />
+        <Container maxWidth="lg" className={classes.container}>
+          <div className={classes.appBarSpacer} />
+          <main className={classes.content}>
+            <article>
+              <header>
+                <Typography variant="h4">{doc.frontmatter.title}</Typography>
+              </header>
+              <div dangerouslySetInnerHTML={{ __html: doc.html }} />
+            </article>
+          </main>
+          <aside>
+            <nav>
+              <ul className={classes.list}>
+                <li>
+                  {previous && (
+                    <Link to={`/docs${previous.fields.slug}`} rel="prev">
+                      ← {previous.frontmatter.title}
+                    </Link>
+                  )}
+                </li>
+                <li>
+                  {next && (
+                    <Link to={`/docs${next.fields.slug}`} rel="next">
+                      {next.frontmatter.title} →
+                    </Link>
+                  )}
+                </li>
+              </ul>
+            </nav>
+          </aside>
+          <Footer />
+        </Container>
+      </div>
     </Layout>
   )
 }
